@@ -50,19 +50,46 @@ def get_option_to_create(number_of_extra_items):
     return items_to_create
     
 def create_items(items_to_create):
-    pass
+    new_items = []
+    for pic in items_to_create:
+        item = Actor(pic + "img")
+        new_items.append(item)
 
+    return new_items
+ 
+    
 def layout_items(items_to_layout):
-    pass
+    num_of_gaps = len(items_to_layout) + 1
+    gap_size = WIDTH/num_of_gaps
+    random.shuffle(items_to_layout)
+    for index,item in enumerate(items_to_layout):
+        new_x_pos = (index + 1 )* gap_size
+        item.x = new_x_pos
 
 def animate_items(items_to_animate):
-    pass
-
+    global animations
+    for item in items_to_animate
+        duration = START_SPEED - current_level
+        item.anchor = ("center","bottom")
+        animation = animate(item, duration = duration, on_finished = handle_game_over, y = HEIGHT)
+        animations.append(animation)
 def handle_game_over():
-    pass
+    global game_over
+    game_over = True
 
 def on_mouse_down(pos):
-    pass
+    global current_level
+    global items
+
+    for item in items():
+        if item.collidepoint(pos):
+            if "paperbag" in item.image:
+                handle_game_complete()
+            else:
+                handle_game_over()
+
+
+        
 
 def handle_game_complete():
     pass
