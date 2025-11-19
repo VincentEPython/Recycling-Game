@@ -36,29 +36,29 @@ def update():
     
 
 def make_items(number_of_extra_items):
-    items_to_create = get_option_to_create(number_of_extra_items)
-    new_items       = create_items(items_to_create)
-    layout_items(new_items)
-    animate_items(new_items)
-    return new_items
+    actors_to_create = get_option_to_create(number_of_extra_items)
+    new_actors       = create_actors(actors_to_create)
+    layout_actors(new_actors)
+    animate_actors(new_actors)
+    return new_actors
 
-def get_option_to_create(number_of_extra_items):
+def get_option_to_create(number_of_extra_actors):
     items_to_create = ["paperbag"]
-    for i in range(0,number_of_extra_items):
+    for i in range(0,number_of_extra_actors):
         random_option = random.choice(ITEMS)
         items_to_create.append(random_option)
     return items_to_create
     
-def create_items(items_to_create):
+def create_actors(items_to_create):
     new_items = []
     for pic in items_to_create:
-        item = Actor(pic + "img")
+        item = Actor(pic)
         new_items.append(item)
 
     return new_items
  
     
-def layout_items(items_to_layout):
+def layout_actors(items_to_layout):
     num_of_gaps = len(items_to_layout) + 1
     gap_size = WIDTH/num_of_gaps
     random.shuffle(items_to_layout)
@@ -66,7 +66,7 @@ def layout_items(items_to_layout):
         new_x_pos = (index + 1 )* gap_size
         item.x = new_x_pos
 
-def animate_items(items_to_animate):
+def animate_actors(items_to_animate):
     global animations
     for item in items_to_animate
         duration = START_SPEED - current_level
