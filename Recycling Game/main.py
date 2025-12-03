@@ -50,12 +50,12 @@ def get_option_to_create(number_of_extra_actors):
     return items_to_create
     
 def create_actors(items_to_create):
-    new_items = []
-    for pic in items_to_create:
-        item = Actor(pic)
-        new_items.append(item)
+    new_actors = []
+    for actor_img in items_to_create:
+        actor = Actor(actor_img)
+        new_actors.append(actor)
 
-    return new_items
+    return new_actors
  
     
 def layout_actors(items_to_layout):
@@ -68,7 +68,7 @@ def layout_actors(items_to_layout):
 
 def animate_actors(items_to_animate):
     global animations
-    for item in items_to_animate
+    for item in items_to_animate:
         duration = START_SPEED - current_level
         item.anchor = ("center","bottom")
         animation = animate(item, duration = duration, on_finished = handle_game_over, y = HEIGHT)
@@ -81,7 +81,7 @@ def on_mouse_down(pos):
     global current_level
     global items
 
-    for item in items():
+    for item in items:
         if item.collidepoint(pos):
             if "paperbag" in item.image:
                 handle_game_complete()
@@ -92,12 +92,22 @@ def on_mouse_down(pos):
         
 
 def handle_game_complete():
-    pass
+    global current_level, items, animations, game_complete
+    stop_animations(animations)
+    if current_level == FINAL_LEVEL:
+        game_complete = True
+
+    else:
+        current_level+=1
+        items = []
+        animations = []
 
 def stop_animations(animations_to_stop):
-    pass
+    for animation in animations:
+        if animation.running:
+            animation.stop()
 
-def display_message(heading_Text_sub_heading_text):
-    pass
+def display_message(heading_Text,sub_heading_text):
+    screen.draw.text(heading_Text,sub_heading_text,(0,0),color = "white", fontsize = 20)
 
 pgzrun.go()
